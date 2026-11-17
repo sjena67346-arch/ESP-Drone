@@ -1,3 +1,8 @@
+guys this repo is not below heaven because I provide 3 bin file that can support mpu6050(clone) this repo can run clonest mpu
+
+
+
+
 # ESP-Drone
 
 <img src="https://github.com/Circuit-Digest/ESP-Drone/blob/8e10ca8f1701dee8f7fa0e6d4f82067c9e87177b/Tittle%20Image.png" width="" alt="alt_text" title="image_tooltip">
