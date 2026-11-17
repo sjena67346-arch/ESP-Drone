@@ -6,10 +6,20 @@ jobs:
     runs-on: ubuntu-latest
     container: espressif/idf:v4.4.7
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
       - name: Build firmware
+        shell: bash
         run: |
+          # Source the ESP-IDF environment to make idf.py available
+          . /opt/esp/idf/export.sh
+          
+          # Navigate into the firmware directory safely (handling case sensitivity)
           if [ -d "Firmware" ]; then cd Firmware; elif [ -d "firmware" ]; then cd firmware; fi
+          
+          idf.py set-target esp32
           idf.py build
       - name: Upload compiled bins
         uses: actions/upload-artifact@v4
