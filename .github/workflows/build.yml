@@ -1,0 +1,22 @@
+name: Build ESP-Drone Firmware
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: espressif/idf:v4.4.7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build firmware
+        run: |
+          if [ -d "Firmware" ]; then cd Firmware; elif [ -d "firmware" ]; then cd firmware; fi
+          idf.py build
+      - name: Upload compiled bins
+        uses: actions/upload-artifact@v4
+        with:
+          name: esp-drone-bins
+          path: |
+            **/build/bootloader/bootloader.bin
+            **/build/partition_table/partition-table.bin
+            **/build/*.bin
+            
